@@ -1,0 +1,41 @@
+﻿@model List<BingoNumber>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Bingo</h1>
+
+@for (int i = 0; i < Model.Count; i++)
+{
+    if (i % 9 == 0)
+    {
+        <br />
+    }
+    <button type="button" class="bingo" value="@Model[i].Number">
+        @if (Model[i].State == true)
+        {
+            <h1>Check</h1>
+        }
+        else
+        {
+            <h1>@Model[i].Number</h1>
+        }
+    </button>
+     
+}
+
+<script>
+    for (const button of document.querySelectorAll(".bingo")) {
+        button.addEventListener('click', () => {
+            if (button.innerHTML == '<h1>Check</h1>') {
+                button.innerHTML = `<h1>${button.value}</h1>`
+            }
+            else {
+                button.innerHTML = '<h1>Check</h1>'
+            }
+
+        })
+
+    }
+</script>
+
